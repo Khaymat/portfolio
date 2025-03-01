@@ -7,7 +7,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -18,13 +17,10 @@ jobs:
       with:
         go-version: '1.20'
 
-    - name: Generate go.mod and go.sum
-      run: |
-        go mod init github.com/Khaymat/portfolio
-        go mod tidy
-
     - name: Build
+      working-directory: backend
       run: go build -v ./...
 
     - name: Test
+      working-directory: backend
       run: go test -v ./...
